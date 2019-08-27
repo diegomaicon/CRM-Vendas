@@ -278,7 +278,7 @@ begin
                       Open;
                       if IsEmpty then
                       begin
-                         MessageDlg('Usuário não casatrado. Crie uma conta.',mtInformation,[mbOk],0);
+                         MessageDlg('Usuário não cadastrado. Crie uma conta.',mtInformation,[mbOk],0);
                          edtUsuario.SetFocus;
                          edtUsuario.SelectAll;
                       end
