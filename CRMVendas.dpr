@@ -4,7 +4,8 @@ uses
   Vcl.Forms,
   uPrincipal in 'uPrincipal.pas' {frmPrincipal},
   uLogin in 'uLogin.pas' {frmLogin},
-  uDM in 'uDM.pas' {DM1: TDataModule};
+  uDM in 'uDM.pas' {DM1: TDataModule},
+  uLancamentoCartorio in 'uLancamentoCartorio.pas' {frmGridCartorio};
 
 {$R *.res}
 
@@ -13,7 +14,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDM1, DM1);
   Application.CreateForm(TfrmLogin, frmLogin);
-
   try
      frmLogin.ShowModal;
   finally

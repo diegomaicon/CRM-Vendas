@@ -35,7 +35,7 @@ type
     Rectangle1: TRectangle;
     FloatAnimation1: TFloatAnimation;
     Layout1: TLayout;
-    edtUsuarioNome: TEdit;
+    edtLogin: TEdit;
     lblVerificaUsuario: TLabel;
     edtUsuarioSenha: TEdit;
     edtUsuarioConfirma: TEdit;
@@ -52,11 +52,14 @@ type
     ibqUser: TFDQuery;
     Salvar: TLabel;
     Label5: TLabel;
+    edtNome: TEdit;
+    Label6: TLabel;
+    Label7: TLabel;
     procedure btnEntrarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
-    procedure edtUsuarioNomeChangeTracking(Sender: TObject);
-    procedure edtUsuarioNomeExit(Sender: TObject);
-    procedure edtUsuarioNomeEnter(Sender: TObject);
+    procedure edtLoginChangeTracking(Sender: TObject);
+    procedure edtLoginExit(Sender: TObject);
+    procedure edtLoginEnter(Sender: TObject);
     procedure Label4Click(Sender: TObject);
     procedure edtUsuarioSenhaExit(Sender: TObject);
     procedure edtUsuarioConfirmaExit(Sender: TObject);
@@ -112,9 +115,9 @@ begin
 
 end;
 
-procedure TfrmLogin.edtUsuarioNomeChangeTracking(Sender: TObject);
+procedure TfrmLogin.edtLoginChangeTracking(Sender: TObject);
 begin
-   if edtUsuarioNome.Text <> '' then
+   if edtlogin.Text <> '' then
    begin
 
        with DM1.ibqAuxiliar do
@@ -122,7 +125,7 @@ begin
           Close;
           SQL.Clear;
           SQL.Add(' Select * from TBL_USUARIO                    '+#13+
-                  ' Where USU_LOGIN = '+QuotedStr(edtUsuarioNome.text) );
+                  ' Where USU_LOGIN = '+QuotedStr(edtlogin.text) );
 
           Open;
 
@@ -148,9 +151,9 @@ begin
    lblVerificaUsuario.Visible := True;
 end;
 
-procedure TfrmLogin.edtUsuarioNomeEnter(Sender: TObject);
+procedure TfrmLogin.edtLoginEnter(Sender: TObject);
 begin
-   if edtUsuarioNome.Text = '' then
+   if edtlogin.Text = '' then
    begin
       lblVerificaUsuario.Visible := True;
       lblVerificaUsuario.Text := 'Digite o nome de usuário';
@@ -158,7 +161,7 @@ begin
    end;
 end;
 
-procedure TfrmLogin.edtUsuarioNomeExit(Sender: TObject);
+procedure TfrmLogin.edtLoginExit(Sender: TObject);
 begin
    if lblVerificaUsuario.Text = 'Dísponivel' then
       lblVerificaUsuario.Visible := False;
@@ -180,6 +183,13 @@ procedure TfrmLogin.FormCreate(Sender: TObject);
 begin
     TabControl1.ActiveTab := tbLoginAcesso;
     edtUsuario.SetFocus;
+
+    //Facilitar o Login  no modo debug.
+    {$IFDEF DEBUG}
+    edtUsuario.Text := ParamStr(1);
+    edtSenha.Text   := ParamStr(2);
+    btnEntrar.SetFocus;
+    {$ENDIF}
 end;
 
 procedure TfrmLogin.FormKeyDown(Sender: TObject; var Key: Word;
@@ -192,7 +202,8 @@ end;
 
 procedure TfrmLogin.Label4Click(Sender: TObject);
 begin
-   edtUsuarioNome.Text := '';
+   edtnome.Text := '';
+   edtlogin.Text := '';
    edtUsuarioSenha.Text := '';
    edtUsuarioConfirma.Text := '';
    TabControl1.ActiveTab := tbLoginCadastro;
@@ -205,7 +216,7 @@ end;
 
 procedure TfrmLogin.retAddUsuarioClick(Sender: TObject);
 begin
-   if (edtUsuarioNome.text <> '') and  (edtUsuarioSenha.text <> '')then
+   if (edtlogin.text <> '') and  (edtUsuarioSenha.text <> '')then
    begin
        if (not lblConfirmaSenha.Visible) and (not lblSenha.Visible) and
           (not lblVerificaUsuario.Visible) then
@@ -214,8 +225,9 @@ begin
            begin
              Close;
              SQL.Clear;
-             SQL.Add('INSERT INTO TBL_USUARIO (USU_LOGIN,USU_SENHA) VALUES ('+
-                      Quotedstr(edtUsuarioNome.text)+ ','+
+             SQL.Add('INSERT INTO TBL_USUARIO (USU_NAME,USU_LOGIN,USU_SENHA) VALUES ('+
+                      Quotedstr(edtNome.text)+ ','+
+                      Quotedstr(edtlogin.text)+ ','+
                       Quotedstr(edtUsuarioSenha.text)+')');
              ExecSQL;
 
@@ -226,7 +238,7 @@ begin
        end;
    end
    else
-     edtUsuarioNome.SetFocus;
+     edtlogin.SetFocus;
 end;
 
 procedure TfrmLogin.retVoltarLoginClick(Sender: TObject);
