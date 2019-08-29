@@ -18,6 +18,7 @@ type
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
+
   private
     { Private declarations }
     procedure CarragaINI(nomeArquivo:string);

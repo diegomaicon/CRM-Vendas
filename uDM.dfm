@@ -12,14 +12,13 @@ object DM1: TDM1
       'Protocol=TCPIP'
       'Server=127.0.0.1'
       'DriverID=FB')
-    Connected = True
     LoginPrompt = False
     Left = 32
     Top = 24
   end
   object ibqAuxiliar: TFDQuery
     Connection = ConexaoFB
-    Left = 56
+    Left = 32
     Top = 96
   end
   object ibdCartorio: TFDTable
@@ -27,8 +26,8 @@ object DM1: TDM1
     Connection = ConexaoFB
     UpdateOptions.UpdateTableName = 'TBL_CARTORIO'
     TableName = 'TBL_CARTORIO'
-    Left = 184
-    Top = 168
+    Left = 32
+    Top = 160
   end
   object FDGUIxWaitCursor1: TFDGUIxWaitCursor
     Provider = 'Forms'

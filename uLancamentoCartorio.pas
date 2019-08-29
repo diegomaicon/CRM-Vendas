@@ -8,8 +8,7 @@ uses
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.Buttons,
-  Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls;
-
+  Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls,uFuncoes;
 type
   TfrmGridCartorio = class(TForm)
     tabSuperior: TPanel;
@@ -32,13 +31,22 @@ type
     procedure Button1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure btnInserirClick(Sender: TObject);
+    procedure btnAlterarClick(Sender: TObject);
+    procedure btnConsultarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+    procedure btnInserirKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    
   private
     { Private declarations }
     procedure Mostra();
     procedure HabilitaBotoesLaterais();
+    procedure ChamaCrud(op:TEstado);
 
   public
     { Public declarations }
+
   end;
 
 var
@@ -47,6 +55,36 @@ var
 implementation
 
 {$R *.dfm}
+
+uses
+  uCadCartorio,uDM;
+
+procedure TfrmGridCartorio.btnAlterarClick(Sender: TObject);
+begin
+    ChamaCrud(tUpdate);
+end;
+
+procedure TfrmGridCartorio.btnConsultarClick(Sender: TObject);
+begin
+    ChamaCrud(tBrowser);
+end;
+
+procedure TfrmGridCartorio.btnExcluirClick(Sender: TObject);
+begin
+    ChamaCrud(tDelete);
+end;
+
+procedure TfrmGridCartorio.btnInserirClick(Sender: TObject);
+begin
+    ChamaCrud(tInsert);
+end;
+
+procedure TfrmGridCartorio.btnInserirKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+    if (Key = 27)  then
+        close;
+end;
 
 procedure TfrmGridCartorio.Button1Click(Sender: TObject);
 begin
@@ -91,6 +129,20 @@ begin
      btnAlterar.Enabled   := not dsConsulta.DataSet.IsEmpty;
      btnConsultar.Enabled := not dsConsulta.DataSet.IsEmpty;
      btnExcluir.Enabled   := not dsConsulta.DataSet.IsEmpty;
+end;
+
+
+
+procedure TfrmGridCartorio.ChamaCrud(op:TEstado);
+begin
+    try
+        frmCadCartorio := TfrmCadCartorio.Create(Self);
+        frmCadCartorio.CRUD := op;
+        frmCadCartorio.ShowModal;
+    finally
+        frmCadCartorio.Free;
+        Mostra();
+    end;
 end;
 
 end.

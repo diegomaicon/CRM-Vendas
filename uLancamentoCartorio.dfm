@@ -35,6 +35,8 @@ object frmGridCartorio: TfrmGridCartorio
       Align = alTop
       Caption = '&Inserir'
       TabOrder = 0
+      OnClick = btnInserirClick
+      OnKeyDown = btnInserirKeyDown
       ExplicitLeft = 2
       ExplicitTop = 1
     end
@@ -48,6 +50,7 @@ object frmGridCartorio: TfrmGridCartorio
       Align = alTop
       Caption = '&Alterar'
       TabOrder = 1
+      OnClick = btnAlterarClick
       ExplicitTop = 274
     end
     object btnConsultar: TBitBtn
@@ -60,6 +63,7 @@ object frmGridCartorio: TfrmGridCartorio
       Align = alTop
       Caption = '&Consultar'
       TabOrder = 2
+      OnClick = btnConsultarClick
       ExplicitLeft = 2
       ExplicitTop = 81
     end
@@ -73,6 +77,7 @@ object frmGridCartorio: TfrmGridCartorio
       Align = alTop
       Caption = '&Excluir'
       TabOrder = 3
+      OnClick = btnExcluirClick
       ExplicitLeft = 2
       ExplicitTop = 141
     end
