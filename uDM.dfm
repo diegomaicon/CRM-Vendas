@@ -24,7 +24,11 @@ object DM1: TDM1
   object ibdCartorio: TFDTable
     IndexFieldNames = 'CAR_ID'
     Connection = ConexaoFB
+    UpdateOptions.AssignedValues = [uvGeneratorName, uvAutoCommitUpdates]
+    UpdateOptions.GeneratorName = 'GEN_TBL_CARTORIO_ID'
+    UpdateOptions.AutoCommitUpdates = True
     UpdateOptions.UpdateTableName = 'TBL_CARTORIO'
+    UpdateOptions.AutoIncFields = 'CAR_ID'
     TableName = 'TBL_CARTORIO'
     Left = 32
     Top = 160

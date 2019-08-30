@@ -259,6 +259,20 @@ object frmGridCartorio: TfrmGridCartorio
         end
         item
           Expanded = False
+          FieldName = 'CAR_ENDERECO'
+          Title.Caption = 'Endere'#231'o'
+          Width = 200
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'car_bairro'
+          Title.Caption = 'Bairro'
+          Width = 100
+          Visible = True
+        end
+        item
+          Expanded = False
           FieldName = 'car_cep'
           Title.Caption = 'CEP'
           Width = 100

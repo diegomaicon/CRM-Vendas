@@ -29,103 +29,149 @@ object frmCadCartorio: TfrmCadCartorio
     TabOrder = 0
     ExplicitLeft = -2
     object Label1: TLabel
-      Left = 64
-      Top = 50
+      Left = 65
+      Top = 35
       Width = 44
       Height = 16
       Caption = 'C'#243'digo:'
     end
     object Label2: TLabel
-      Left = 64
-      Top = 97
+      Left = 65
+      Top = 82
       Width = 38
       Height = 16
       Caption = 'Nome:'
     end
     object Label3: TLabel
-      Left = 64
-      Top = 150
-      Width = 27
+      Left = 65
+      Top = 135
+      Width = 33
       Height = 16
       Caption = 'Cep:'
     end
     object Label4: TLabel
-      Left = 232
-      Top = 150
-      Width = 44
+      Left = 281
+      Top = 188
+      Width = 42
       Height = 16
       Caption = 'Cidade:'
     end
     object Label5: TLabel
-      Left = 475
-      Top = 149
-      Width = 20
+      Left = 501
+      Top = 188
+      Width = 12
       Height = 17
       Caption = 'UF:'
     end
     object Label6: TLabel
       Left = 65
-      Top = 210
+      Top = 243
       Width = 78
       Height = 16
       Caption = 'Classifica'#231#227'o:'
     end
+    object Label7: TLabel
+      Left = 165
+      Top = 135
+      Width = 58
+      Height = 16
+      Caption = 'Endere'#231'o:'
+    end
+    object Label8: TLabel
+      Left = 65
+      Top = 188
+      Width = 43
+      Height = 16
+      Caption = 'Bairro:'
+    end
+    object lblBusca: TLabel
+      Left = 65
+      Top = 175
+      Width = 48
+      Height = 11
+      Caption = 'Buscando...'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -9
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Visible = False
+    end
     object edtNome: TDBEdit
       Left = 64
-      Top = 115
-      Width = 441
+      Top = 100
+      Width = 465
       Height = 24
       DataField = 'CAR_NOME'
       DataSource = dsCartorio
-      MaxLength = 100
-      TabOrder = 0
+      TabOrder = 1
     end
     object edtCep: TDBEdit
-      Left = 64
-      Top = 167
-      Width = 121
+      Left = 65
+      Top = 151
+      Width = 85
       Height = 24
       DataField = 'CAR_CEP'
       DataSource = dsCartorio
       MaxLength = 8
-      TabOrder = 1
+      TabOrder = 2
+      OnExit = edtCepExit
+      OnKeyPress = edtCepKeyPress
     end
     object estCidade: TDBEdit
-      Left = 232
-      Top = 167
-      Width = 233
+      Left = 281
+      Top = 206
+      Width = 200
       Height = 24
       DataField = 'CAR_CIDADE'
       DataSource = dsCartorio
-      MaxLength = 50
-      TabOrder = 2
+      TabOrder = 5
     end
     object edtUF: TDBEdit
-      Left = 471
-      Top = 167
-      Width = 34
+      Left = 497
+      Top = 206
+      Width = 32
       Height = 24
       DataField = 'CAR_UF'
       DataSource = dsCartorio
-      MaxLength = 2
-      TabOrder = 3
+      TabOrder = 6
     end
     object DBComboBox1: TDBComboBox
-      Left = 64
-      Top = 227
+      Left = 65
+      Top = 260
       Width = 185
       Height = 24
       DataField = 'CAR_TIPO'
       DataSource = dsCartorio
-      TabOrder = 4
+      TabOrder = 7
     end
     object edtCodigo: TEdit
       Left = 65
-      Top = 67
+      Top = 52
       Width = 121
       Height = 24
-      TabOrder = 5
+      Enabled = False
+      TabOrder = 0
       Text = 'edtCodigo'
+    end
+    object edtEndereco: TDBEdit
+      Left = 165
+      Top = 152
+      Width = 364
+      Height = 24
+      DataField = 'CAR_ENDERECO'
+      DataSource = dsCartorio
+      TabOrder = 3
+    end
+    object edtBairro: TDBEdit
+      Left = 65
+      Top = 206
+      Width = 199
+      Height = 24
+      DataField = 'CAR_BAIRRO'
+      DataSource = dsCartorio
+      TabOrder = 4
     end
   end
   object tabinferior: TPanel
@@ -157,8 +203,27 @@ object frmCadCartorio: TfrmCadCartorio
     end
   end
   object dsCartorio: TDataSource
+    AutoEdit = False
     DataSet = DM1.ibdCartorio
     Left = 467
     Top = 259
+  end
+  object RESTClient1: TRESTClient
+    Params = <>
+    HandleRedirects = True
+    Left = 379
+    Top = 19
+  end
+  object RESTResponse1: TRESTResponse
+    Left = 539
+    Top = 19
+  end
+  object RESTRequest1: TRESTRequest
+    Client = RESTClient1
+    Params = <>
+    Response = RESTResponse1
+    SynchronizedEvents = False
+    Left = 459
+    Top = 19
   end
 end
