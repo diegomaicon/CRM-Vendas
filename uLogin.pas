@@ -266,6 +266,7 @@ begin
 
             if not IsEmpty then
             begin
+                 DM1.vgbUsuario := FieldByName('USU_NAME').AsString;
                  Close;
                  try
                     frmPrincipal := TfrmPrincipal.Create(Self);

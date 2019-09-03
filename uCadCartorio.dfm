@@ -27,7 +27,6 @@ object frmCadCartorio: TfrmCadCartorio
     Height = 318
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = -2
     object Label1: TLabel
       Left = 65
       Top = 35
@@ -45,22 +44,22 @@ object frmCadCartorio: TfrmCadCartorio
     object Label3: TLabel
       Left = 65
       Top = 135
-      Width = 33
+      Width = 27
       Height = 16
       Caption = 'Cep:'
     end
     object Label4: TLabel
       Left = 281
       Top = 188
-      Width = 42
+      Width = 44
       Height = 16
       Caption = 'Cidade:'
     end
     object Label5: TLabel
       Left = 501
       Top = 188
-      Width = 12
-      Height = 17
+      Width = 20
+      Height = 16
       Caption = 'UF:'
     end
     object Label6: TLabel
@@ -80,7 +79,7 @@ object frmCadCartorio: TfrmCadCartorio
     object Label8: TLabel
       Left = 65
       Top = 188
-      Width = 43
+      Width = 39
       Height = 16
       Caption = 'Bairro:'
     end
@@ -182,7 +181,6 @@ object frmCadCartorio: TfrmCadCartorio
     Height = 70
     Align = alBottom
     TabOrder = 1
-    ExplicitLeft = 8
     object btnConfirmar: TButton
       Left = 165
       Top = 14
@@ -210,7 +208,6 @@ object frmCadCartorio: TfrmCadCartorio
   end
   object RESTClient1: TRESTClient
     Params = <>
-    HandleRedirects = True
     Left = 379
     Top = 19
   end

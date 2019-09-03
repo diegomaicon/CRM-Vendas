@@ -16,6 +16,7 @@ type
     ibqAuxiliar: TFDQuery;
     ibdCartorio: TFDTable;
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
+    ibdContato: TFDTable;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
 
@@ -23,14 +24,13 @@ type
     { Private declarations }
     procedure CarragaINI(nomeArquivo:string);
     procedure GravaIni(nomeArquivo:string);
-    var
 
 
   public
     { Public declarations }
     var
       vgbPathDB,vgbUserDB,vgbPasswordDB:string;
-
+      vgbUsuario:string;
   end;
 
 var

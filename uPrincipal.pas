@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Menus, Vcl.StdCtrls,
-  Vcl.Buttons;
+  Vcl.Buttons, System.ImageList, Vcl.ImgList, Vcl.Imaging.pngimage;
 
 type
   TfrmPrincipal = class(TForm)
@@ -20,7 +20,13 @@ type
     Panel4: TPanel;
     Panel6: TPanel;
     PopupMenu1: TPopupMenu;
+    lblUsuario: TLabel;
+    lbl1: TLabel;
+    Image1: TImage;
+    ImageList1: TImageList;
     procedure btnInserirClick(Sender: TObject);
+    procedure btnAlterarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
 
@@ -38,8 +44,18 @@ implementation
 
 
 uses
-  uLogin, uLancamentoCartorio;
+  uDM, uLogin, uLancamentoCartorio, uLancamentoContatos;
 
+
+procedure TfrmPrincipal.btnAlterarClick(Sender: TObject);
+begin
+    try
+        frmGridContato := TfrmGridContato.Create(Self);
+        frmGridContato.ShowModal;
+    finally
+        frmGridContato.Free;
+    end;
+end;
 
 procedure TfrmPrincipal.btnInserirClick(Sender: TObject);
 begin
@@ -49,6 +65,11 @@ begin
     finally
         frmGridCartorio.Free;
     end;
+end;
+
+procedure TfrmPrincipal.FormShow(Sender: TObject);
+begin
+     lblUsuario.Caption := DM1.vgbUsuario;
 end;
 
 end.

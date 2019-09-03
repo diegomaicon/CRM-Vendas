@@ -5,9 +5,11 @@ uses
   uPrincipal in 'uPrincipal.pas' {frmPrincipal},
   uLogin in 'uLogin.pas' {frmLogin},
   uDM in 'uDM.pas' {DM1: TDataModule},
-  uLancamentoCartorio in 'uLancamentoCartorio.pas' {frmGridCartorio},
   uCadCartorio in 'uCadCartorio.pas' {frmCadCartorio},
-  uFuncoes in 'uFuncoes.pas';
+  uFuncoes in 'uFuncoes.pas',
+  uLancamentoCartorio in 'uLancamentoCartorio.pas' {frmGridCartorio},
+  uLancamentoContatos in 'uLancamentoContatos.pas' {frmGridContato},
+  uCadContato in 'uCadContato.pas' {frmCadContato};
 
 {$R *.res}
 

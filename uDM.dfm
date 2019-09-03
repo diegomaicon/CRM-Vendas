@@ -12,6 +12,7 @@ object DM1: TDM1
       'Protocol=TCPIP'
       'Server=127.0.0.1'
       'DriverID=FB')
+    Connected = True
     LoginPrompt = False
     Left = 32
     Top = 24
@@ -37,5 +38,19 @@ object DM1: TDM1
     Provider = 'Forms'
     Left = 168
     Top = 32
+  end
+  object ibdContato: TFDTable
+    Active = True
+    IndexFieldNames = 'CON_ID;CON_NOME'
+    Connection = ConexaoFB
+    UpdateOptions.AssignedValues = [uvGeneratorName, uvAutoCommitUpdates]
+    UpdateOptions.GeneratorName = 'GEN_TBL_CONTATOS_ID'
+    UpdateOptions.AutoCommitUpdates = True
+    UpdateOptions.UpdateTableName = 'TBL_CONTATOS'
+    UpdateOptions.KeyFields = 'CON_ID'
+    UpdateOptions.AutoIncFields = 'CON_ID'
+    TableName = 'TBL_CONTATOS'
+    Left = 144
+    Top = 168
   end
 end

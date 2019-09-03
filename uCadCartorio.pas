@@ -51,6 +51,7 @@ type
     { Public declarations }
    var
     CRUD: TEstado;
+    id_CRUD:Integer;
   end;
 
 var
@@ -104,19 +105,19 @@ begin
                    end;
         tBrowser : begin
                       HabilitaComponentes(false);
-                      DM1.ibdCartorio.Locate('CAR_ID',dsCartorio.DataSet.FieldByName('CAR_ID').AsInteger,[]);
+                      DM1.ibdCartorio.Locate('CAR_ID',id_CRUD,[]);
                       edtCodigo.Text  := IntToStr(DM1.ibdCartorio.FieldByName('CAR_ID').AsInteger);
                    end;
         tUpdate : begin
                        HabilitaComponentes(true);
-                       DM1.ibdCartorio.Locate('CAR_ID',dsCartorio.DataSet.FieldByName('CAR_ID').AsInteger,[]);
+                       DM1.ibdCartorio.Locate('CAR_ID',id_CRUD,[]);
                        edtCodigo.Text  :=  IntToStr(DM1.ibdCartorio.FieldByName('CAR_ID').AsInteger);
                        DM1.ibdCartorio.Edit;
                   end;
 
         tDelete : begin
                       HabilitaComponentes(false);
-                      DM1.ibdCartorio.Locate('CAR_ID',dsCartorio.DataSet.FieldByName('CAR_ID').AsInteger,[]);
+                      DM1.ibdCartorio.Locate('CAR_ID',id_CRUD,[]);
                       edtCodigo.Text  := IntToStr(DM1.ibdCartorio.FieldByName('CAR_ID').AsInteger);
                   end;
     end;

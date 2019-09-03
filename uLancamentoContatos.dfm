@@ -1,9 +1,9 @@
-object frmGridCartorio: TfrmGridCartorio
+object frmGridContato: TfrmGridContato
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
-  Caption = 'Cart'#243'rios'
+  Caption = 'Contatos'
   ClientHeight = 720
   ClientWidth = 1024
   Color = clBtnFace
@@ -14,11 +14,11 @@ object frmGridCartorio: TfrmGridCartorio
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
-  OnKeyDown = FormKeyDown
+  OnKeyDown = i
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 16
-  object tabLateral: TPanel
+  object tabSuperior: TPanel
     AlignWithMargins = True
     Left = 3
     Top = 3
@@ -232,61 +232,53 @@ object frmGridCartorio: TfrmGridCartorio
       OnDblClick = gridCartorioDblClick
       Columns = <
         item
+          Alignment = taCenter
           Expanded = False
-          FieldName = 'car_id'
+          FieldName = 'CON_ID'
           Title.Caption = 'ID'
           Width = 50
           Visible = True
         end
         item
           Expanded = False
-          FieldName = 'car_nome'
-          Title.Caption = 'Nome'
-          Width = 300
+          FieldName = 'CARTORIO'
+          Title.Caption = 'Cart'#243'rio'
+          Width = 131
           Visible = True
         end
         item
           Expanded = False
-          FieldName = 'CAR_ENDERECO'
-          Title.Caption = 'Endere'#231'o'
+          FieldName = 'CON_NOME'
+          Title.Caption = 'Nome'
           Width = 200
           Visible = True
         end
         item
           Expanded = False
-          FieldName = 'car_bairro'
-          Title.Caption = 'Bairro'
+          FieldName = 'CON_EMAIL'
+          Title.Caption = 'Email'
+          Width = 200
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'CON_PHONE_PRINCIPAL'
+          Title.Caption = 'Telefone'
           Width = 100
           Visible = True
         end
         item
           Expanded = False
-          FieldName = 'car_cep'
-          Title.Caption = 'CEP'
+          FieldName = 'CON_PHONE_1'
+          Title.Caption = 'Celular 1'
           Width = 100
           Visible = True
         end
         item
           Expanded = False
-          FieldName = 'car_cidade'
-          Title.Caption = 'Cidade'
+          FieldName = 'CON_PHONE_2'
+          Title.Caption = 'Celular 2'
           Width = 250
-          Visible = True
-        end
-        item
-          Alignment = taCenter
-          Expanded = False
-          FieldName = 'car_uf'
-          Title.Alignment = taCenter
-          Title.Caption = 'UF'
-          Width = 40
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'car_tipo'
-          Title.Caption = 'Tipo'
-          Width = 100
           Visible = True
         end>
     end

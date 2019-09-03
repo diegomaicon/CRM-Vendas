@@ -1,4 +1,4 @@
-unit uLancamentoCartorio;
+unit uLancamentoContatos;
 
 interface
 
@@ -10,8 +10,8 @@ uses
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.Buttons,
   Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls,uFuncoes;
 type
-  TfrmGridCartorio = class(TForm)
-    tabLateral: TPanel;
+  TfrmGridContato = class(TForm)
+    tabSuperior: TPanel;
     tabMeio: TPanel;
     gridCartorio: TDBGrid;
     Panel1: TPanel;
@@ -30,7 +30,7 @@ type
     procedure dsConsultaDataChange(Sender: TObject; Field: TField);
     procedure Button1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure i(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure btnInserirClick(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);
     procedure btnConsultarClick(Sender: TObject);
@@ -47,102 +47,101 @@ type
 
   public
     { Public declarations }
-    var
-        func_F8:Boolean;
-        id_Car_retorno:Integer;
+
   end;
 
 var
-  frmGridCartorio: TfrmGridCartorio;
+  frmGridContato: TfrmGridContato;
 
 implementation
 
 {$R *.dfm}
 
 uses
-  uCadCartorio,uDM;
+  uDM, uCadContato;
 
-procedure TfrmGridCartorio.btnAlterarClick(Sender: TObject);
+procedure TfrmGridContato.btnAlterarClick(Sender: TObject);
 begin
     ChamaCrud(tUpdate);
 end;
 
-procedure TfrmGridCartorio.btnConsultarClick(Sender: TObject);
+procedure TfrmGridContato.btnConsultarClick(Sender: TObject);
 begin
     ChamaCrud(tBrowser);
 end;
 
-procedure TfrmGridCartorio.btnExcluirClick(Sender: TObject);
+procedure TfrmGridContato.btnExcluirClick(Sender: TObject);
 begin
     ChamaCrud(tDelete);
 end;
 
-procedure TfrmGridCartorio.btnInserirClick(Sender: TObject);
+procedure TfrmGridContato.btnInserirClick(Sender: TObject);
 begin
-    ChamaCrud(tInsert);
+    try
+       DM1.ibdContato.Open;
+       if not DM1.ibdContato.IsEmpty then
+          ChamaCrud(tInsert)
+       else   
+            MessageDlg('É necessário que cadastre um cartório.',mtInformation,[mbOk],0);      
+    finally
+        DM1.ibdContato.Close;
+    end;
+    
+    
 end;
 
-procedure TfrmGridCartorio.btnInserirKeyDown(Sender: TObject; var Key: Word;
+procedure TfrmGridContato.btnInserirKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
     if (Key = 27)  then
         close;
 end;
 
-procedure TfrmGridCartorio.Button1Click(Sender: TObject);
+procedure TfrmGridContato.Button1Click(Sender: TObject);
 begin
     Mostra();
 end;
 
-procedure TfrmGridCartorio.dsConsultaDataChange(Sender: TObject; Field: TField);
+procedure TfrmGridContato.dsConsultaDataChange(Sender: TObject; Field: TField);
 begin
     HabilitaBotoesLaterais();
 end;
 
-procedure TfrmGridCartorio.FormKeyDown(Sender: TObject; var Key: Word;
+procedure TfrmGridContato.i(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-     if (Key = 27)  then
+     if (Key = VK_ESCAPE)  then
         close;
 end;
 
-procedure TfrmGridCartorio.FormShow(Sender: TObject);
+procedure TfrmGridContato.FormShow(Sender: TObject);
 begin
    Mostra();
    HabilitaBotoesLaterais();
 end;
 
-procedure TfrmGridCartorio.gridCartorioDblClick(Sender: TObject);
+procedure TfrmGridContato.gridCartorioDblClick(Sender: TObject);
 begin
-    if func_F8 then
-    begin
-      id_Car_retorno := gridCartorio.DataSource.DataSet.FieldByName('CAR_ID').AsInteger;
-      Close;
-    end
-    else
-        btnConsultar.Click;
-
+    btnConsultar.Click;
 end;
 
-procedure TfrmGridCartorio.Mostra();
+procedure TfrmGridContato.Mostra();
 begin
-    try
-        with ibqConsulta do
-        begin
-            Close;
-            SQL.Clear;
-            SQL.Add('Select * from TBL_CARTORIO '+#13+
-                    ' Where 1 = 1               ');
-            if   Trim(edtBusca.Text) <> '' then
-                 SQL.Add(' and car_nome LIKE '+QuotedStr('%'+edtBusca.Text+'%') );
-            Open;
-        end;
-    except on E: Exception do
-        MessageDlg('Problema ao Cartório. Erro:'+e.ToString,mtInformation,[mbOk],0);
+    with ibqConsulta do
+    begin
+        Close;
+        SQL.Clear;
+        SQL.Add(' Select (CAST(CAR_ID AS VARCHAR(10)) || '+QuotedStr(' - ')+' ||CAR_NOME) AS CARTORIO, CT.*   '+#13+
+                ' from TBL_CONTATOS  CT                                                                       '+#13+
+                ' inner join TBL_CARTORIO ON CON_CAR_ID = CAR_ID                                              '+#13+
+                ' Where 1 = 1               ');
+        if   Trim(edtBusca.Text) <> '' then
+             SQL.Add(' and con_nome LIKE '+QuotedStr('%'+edtBusca.Text+'%') );
+        Open;
     end;
 end;
 
-procedure TfrmGridCartorio.HabilitaBotoesLaterais();
+procedure TfrmGridContato.HabilitaBotoesLaterais();
 begin
      btnAlterar.Enabled   := not dsConsulta.DataSet.IsEmpty;
      btnConsultar.Enabled := not dsConsulta.DataSet.IsEmpty;
@@ -151,15 +150,15 @@ end;
 
 
 
-procedure TfrmGridCartorio.ChamaCrud(op:TEstado);
+procedure TfrmGridContato.ChamaCrud(op:TEstado);
 begin
     try
-        frmCadCartorio := TfrmCadCartorio.Create(Self);
-        frmCadCartorio.CRUD    := op;
-        frmCadCartorio.id_CRUD := gridCartorio.DataSource.DataSet.FieldByName('CAR_ID').AsInteger;
-        frmCadCartorio.ShowModal;
+        frmCadContato := TfrmCadContato.Create(Self);
+        frmCadContato.CRUD    := op;
+        frmCadContato.id_CRUD := gridCartorio.DataSource.DataSet.FieldByName('CON_ID').AsInteger;
+        frmCadContato.ShowModal;
     finally
-        frmCadCartorio.Free;
+        frmCadContato.Free;
         Mostra();
     end;
 end;
