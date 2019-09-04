@@ -11,9 +11,9 @@ uses
   Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls,uFuncoes;
 type
   TfrmGridContato = class(TForm)
-    tabSuperior: TPanel;
+    tabLateral: TPanel;
     tabMeio: TPanel;
-    gridCartorio: TDBGrid;
+    gridContato: TDBGrid;
     Panel1: TPanel;
     btnInserir: TBitBtn;
     btnAlterar: TBitBtn;
@@ -37,7 +37,7 @@ type
     procedure btnExcluirClick(Sender: TObject);
     procedure btnInserirKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
-    procedure gridCartorioDblClick(Sender: TObject);
+    procedure gridContatoDblClick(Sender: TObject);
     
   private
     { Private declarations }
@@ -47,7 +47,9 @@ type
 
   public
     { Public declarations }
-
+     var
+        func_F8:Boolean;
+        id_con_retorno:Integer;
   end;
 
 var
@@ -120,9 +122,16 @@ begin
    HabilitaBotoesLaterais();
 end;
 
-procedure TfrmGridContato.gridCartorioDblClick(Sender: TObject);
+procedure TfrmGridContato.gridContatoDblClick(Sender: TObject);
 begin
-    btnConsultar.Click;
+    if func_F8 then
+    begin
+      id_con_retorno := gridContato.DataSource.DataSet.FieldByName('CON_ID').AsInteger;
+      Close;
+    end
+    else
+        btnConsultar.Click;
+
 end;
 
 procedure TfrmGridContato.Mostra();
@@ -155,7 +164,7 @@ begin
     try
         frmCadContato := TfrmCadContato.Create(Self);
         frmCadContato.CRUD    := op;
-        frmCadContato.id_CRUD := gridCartorio.DataSource.DataSet.FieldByName('CON_ID').AsInteger;
+        frmCadContato.id_CRUD := gridContato.DataSource.DataSet.FieldByName('CON_ID').AsInteger;
         frmCadContato.ShowModal;
     finally
         frmCadContato.Free;

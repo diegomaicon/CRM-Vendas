@@ -18,7 +18,7 @@ object frmGridContato: TfrmGridContato
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 16
-  object tabSuperior: TPanel
+  object tabLateral: TPanel
     AlignWithMargins = True
     Left = 3
     Top = 3
@@ -214,7 +214,7 @@ object frmGridContato: TfrmGridContato
     Height = 628
     Align = alClient
     TabOrder = 1
-    object gridCartorio: TDBGrid
+    object gridContato: TDBGrid
       AlignWithMargins = True
       Left = 4
       Top = 4
@@ -229,7 +229,7 @@ object frmGridContato: TfrmGridContato
       TitleFont.Height = -13
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
-      OnDblClick = gridCartorioDblClick
+      OnDblClick = gridContatoDblClick
       Columns = <
         item
           Alignment = taCenter

@@ -17,6 +17,7 @@ type
     ibdCartorio: TFDTable;
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
     ibdContato: TFDTable;
+    ibdAgenda: TFDTable;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
 
@@ -31,6 +32,7 @@ type
     var
       vgbPathDB,vgbUserDB,vgbPasswordDB:string;
       vgbUsuario:string;
+      vgbCodUsuario:integer;
   end;
 
 var

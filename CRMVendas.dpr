@@ -9,7 +9,8 @@ uses
   uFuncoes in 'uFuncoes.pas',
   uLancamentoCartorio in 'uLancamentoCartorio.pas' {frmGridCartorio},
   uLancamentoContatos in 'uLancamentoContatos.pas' {frmGridContato},
-  uCadContato in 'uCadContato.pas' {frmCadContato};
+  uCadContato in 'uCadContato.pas' {frmCadContato},
+  uCadAtividade in 'uCadAtividade.pas' {frmCadAtividade};
 
 {$R *.res}
 

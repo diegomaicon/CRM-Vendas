@@ -50,7 +50,19 @@ object DM1: TDM1
     UpdateOptions.KeyFields = 'CON_ID'
     UpdateOptions.AutoIncFields = 'CON_ID'
     TableName = 'TBL_CONTATOS'
-    Left = 144
+    Left = 104
+    Top = 160
+  end
+  object ibdAgenda: TFDTable
+    IndexFieldNames = 'AGE_ID'
+    Connection = ConexaoFB
+    UpdateOptions.AssignedValues = [uvAutoCommitUpdates]
+    UpdateOptions.AutoCommitUpdates = True
+    UpdateOptions.UpdateTableName = 'TBL_AGENDA'
+    UpdateOptions.KeyFields = 'AGE_ID'
+    UpdateOptions.AutoIncFields = 'AGE_ID'
+    TableName = 'TBL_AGENDA'
+    Left = 192
     Top = 168
   end
 end

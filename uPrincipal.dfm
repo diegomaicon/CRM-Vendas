@@ -25,6 +25,14 @@ object frmPrincipal: TfrmPrincipal
     Height = 714
     Align = alClient
     TabOrder = 0
+    ExplicitLeft = -2
+    ExplicitTop = -2
+    object Label1: TLabel
+      Left = 512
+      Top = 104
+      Width = 4
+      Height = 16
+    end
     object tabSuperior: TPanel
       AlignWithMargins = True
       Left = 4
@@ -33,7 +41,7 @@ object frmPrincipal: TfrmPrincipal
       Height = 706
       Align = alLeft
       TabOrder = 0
-      object btnInserir: TBitBtn
+      object btnLancCartorio: TBitBtn
         Left = 1
         Top = 70
         Width = 155
@@ -41,9 +49,9 @@ object frmPrincipal: TfrmPrincipal
         Align = alTop
         Caption = '&Cart'#243'rios'
         TabOrder = 0
-        OnClick = btnInserirClick
+        OnClick = btnLancCartorioClick
       end
-      object btnAlterar: TBitBtn
+      object btnLancContato: TBitBtn
         Left = 1
         Top = 130
         Width = 155
@@ -53,9 +61,9 @@ object frmPrincipal: TfrmPrincipal
         Align = alTop
         Caption = 'Contatos'
         TabOrder = 1
-        OnClick = btnAlterarClick
+        OnClick = btnLancContatoClick
       end
-      object btnConsultar: TBitBtn
+      object btnLancAtividade: TBitBtn
         Left = 1
         Top = 190
         Width = 155
@@ -63,7 +71,10 @@ object frmPrincipal: TfrmPrincipal
         Margins.Top = 10
         Margins.Bottom = 10
         Align = alTop
+        Caption = 'Lan'#231'ar Atividade'
         TabOrder = 2
+        WordWrap = True
+        OnClick = btnLancAtividadeClick
       end
       object btnExcluir: TBitBtn
         Left = 1
@@ -109,7 +120,6 @@ object frmPrincipal: TfrmPrincipal
           ParentFont = False
           Layout = tlCenter
           WordWrap = True
-          ExplicitLeft = 1
           ExplicitWidth = 48
           ExplicitHeight = 16
         end
@@ -303,6 +313,22 @@ object frmPrincipal: TfrmPrincipal
         Enabled = False
         TabOrder = 7
       end
+    end
+    object StringGrid1: TStringGrid
+      AlignWithMargins = True
+      Left = 764
+      Top = 4
+      Width = 250
+      Height = 706
+      Align = alRight
+      ColCount = 1
+      DefaultColWidth = 250
+      DefaultRowHeight = 100
+      FixedCols = 0
+      RowCount = 1
+      FixedRows = 0
+      TabOrder = 1
+      OnDrawCell = StringGrid1DrawCell
     end
   end
   object PopupMenu1: TPopupMenu
