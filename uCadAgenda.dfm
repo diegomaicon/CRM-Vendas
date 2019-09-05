@@ -1,4 +1,4 @@
-object frmCadAtividade: TfrmCadAtividade
+object frmCadAgenda: TfrmCadAgenda
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu]
@@ -55,7 +55,6 @@ object frmCadAtividade: TfrmCadAtividade
     Height = 318
     Align = alClient
     TabOrder = 1
-    ExplicitLeft = -2
     object Label1: TLabel
       Left = 65
       Top = 61

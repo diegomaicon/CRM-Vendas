@@ -132,8 +132,8 @@
             <Form>frmCadContato</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="uCadAtividade.pas">
-            <Form>frmCadAtividade</Form>
+        <DCCReference Include="uCadAgenda.pas">
+            <Form>frmCadAgenda</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

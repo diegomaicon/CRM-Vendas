@@ -240,6 +240,13 @@ object frmGridCartorio: TfrmGridCartorio
         end
         item
           Expanded = False
+          FieldName = 'car_tipo'
+          Title.Caption = 'Tipo'
+          Width = 125
+          Visible = True
+        end
+        item
+          Expanded = False
           FieldName = 'car_nome'
           Title.Caption = 'Nome'
           Width = 300
@@ -280,13 +287,6 @@ object frmGridCartorio: TfrmGridCartorio
           Title.Alignment = taCenter
           Title.Caption = 'UF'
           Width = 40
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'car_tipo'
-          Title.Caption = 'Tipo'
-          Width = 100
           Visible = True
         end>
     end

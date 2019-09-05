@@ -27,6 +27,8 @@ object frmCadCartorio: TfrmCadCartorio
     Height = 318
     Align = alClient
     TabOrder = 0
+    ExplicitLeft = -45
+    ExplicitTop = 17
     object Label1: TLabel
       Left = 65
       Top = 35
@@ -136,15 +138,6 @@ object frmCadCartorio: TfrmCadCartorio
       DataSource = dsCartorio
       TabOrder = 6
     end
-    object DBComboBox1: TDBComboBox
-      Left = 65
-      Top = 260
-      Width = 185
-      Height = 24
-      DataField = 'CAR_TIPO'
-      DataSource = dsCartorio
-      TabOrder = 7
-    end
     object edtCodigo: TEdit
       Left = 65
       Top = 52
@@ -171,6 +164,19 @@ object frmCadCartorio: TfrmCadCartorio
       DataField = 'CAR_BAIRRO'
       DataSource = dsCartorio
       TabOrder = 4
+    end
+    object cbbTipo: TComboBox
+      Left = 67
+      Top = 261
+      Width = 198
+      Height = 24
+      ItemIndex = 0
+      TabOrder = 7
+      Text = 'Selecionar...'
+      Items.Strings = (
+        'Selecionar...'
+        '1 - Cliente'
+        '2 - Prospect')
     end
   end
   object tabinferior: TPanel

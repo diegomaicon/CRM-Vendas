@@ -1,4 +1,4 @@
-unit uCadAtividade;
+unit uCadAgenda;
 
 interface
 
@@ -10,7 +10,7 @@ uses
   Vcl.WinXCalendars;
 
 type
-  TfrmCadAtividade = class(TForm)
+  TfrmCadAgenda = class(TForm)
     tabinferior: TPanel;
     btnConfirmar: TButton;
     btnCancelar: TButton;
@@ -47,7 +47,7 @@ type
   end;
 
 var
-  frmCadAtividade: TfrmCadAtividade;
+  frmCadAgenda: TfrmCadAgenda;
 
 implementation
 
@@ -56,13 +56,13 @@ implementation
 uses
    uDM,uLancamentoCartorio, uLancamentoContatos;
 
-procedure TfrmCadAtividade.btnCancelarClick(Sender: TObject);
+procedure TfrmCadAgenda.btnCancelarClick(Sender: TObject);
 begin
     DM1.ibdAgenda.Cancel;
     close;
 end;
 
-procedure TfrmCadAtividade.btnConfirmarClick(Sender: TObject);
+procedure TfrmCadAgenda.btnConfirmarClick(Sender: TObject);
 begin
 
      case CRUD of
@@ -83,12 +83,12 @@ begin
      Close;
 end;
 
-procedure TfrmCadAtividade.FormCreate(Sender: TObject);
+procedure TfrmCadAgenda.FormCreate(Sender: TObject);
 begin
     DM1.ibdAgenda.Open;
 end;
 
-procedure TfrmCadAtividade.FormKeyDown(Sender: TObject; var Key: Word;
+procedure TfrmCadAgenda.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
     if (Key = 27)  then
@@ -96,7 +96,7 @@ begin
 end;
 
 
-procedure TfrmCadAtividade.FormShow(Sender: TObject);
+procedure TfrmCadAgenda.FormShow(Sender: TObject);
 begin
     edtData.SetFocus;
 
@@ -132,7 +132,7 @@ end;
 
 
 
-procedure TfrmCadAtividade.HabilitaComponentes(status:Boolean);
+procedure TfrmCadAgenda.HabilitaComponentes(status:Boolean);
 var
     i:Word;
 begin
@@ -162,7 +162,7 @@ end;
 
 
 
-function TfrmCadAtividade.MostraProximoID:Integer;
+function TfrmCadAgenda.MostraProximoID:Integer;
 begin
       with DM1.ibqAuxiliar do
       begin
@@ -178,7 +178,7 @@ end;
 
 
 
-procedure TfrmCadAtividade.edtCodCartorioExit(Sender: TObject);
+procedure TfrmCadAgenda.edtCodCartorioExit(Sender: TObject);
 var
    nome_aux:string;
 begin
@@ -205,7 +205,7 @@ begin
      end;
 end;
 
-procedure TfrmCadAtividade.edtCodCartorioKeyDown(Sender: TObject; var Key: Word;
+procedure TfrmCadAgenda.edtCodCartorioKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
      if Key = vk_f8 then
@@ -224,7 +224,7 @@ begin
 end;
 
 
-function TfrmCadAtividade.ValidaCartorio(id:integer):string;
+function TfrmCadAgenda.ValidaCartorio(id:integer):string;
 begin
      if id > 0 then
      begin

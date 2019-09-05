@@ -18,7 +18,6 @@ type
     edtCep: TDBEdit;
     estCidade: TDBEdit;
     edtUF: TDBEdit;
-    DBComboBox1: TDBComboBox;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
@@ -35,6 +34,7 @@ type
     edtBairro: TDBEdit;
     Label8: TLabel;
     lblBusca: TLabel;
+    cbbTipo: TComboBox;
     procedure btnCancelarClick(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure btnConfirmarClick(Sender: TObject);
@@ -75,8 +75,14 @@ begin
 
      case CRUD of
 
-        tInsert : DM1.ibdCartorio.Post;
-        tUpdate : DM1.ibdCartorio.Post;
+        tInsert : begin
+                     DM1.ibdCartorio.FieldByName('CAR_TIPO').AsInteger := cbbTipo.ItemIndex;
+                     DM1.ibdCartorio.Post;
+                  end;
+        tUpdate : begin
+                     DM1.ibdCartorio.FieldByName('CAR_TIPO').AsInteger := cbbTipo.ItemIndex;
+                     DM1.ibdCartorio.Post;
+                  end;
         tDelete : DM1.ibdCartorio.Delete;
      end;
     Close;
@@ -107,11 +113,13 @@ begin
                       HabilitaComponentes(false);
                       DM1.ibdCartorio.Locate('CAR_ID',id_CRUD,[]);
                       edtCodigo.Text  := IntToStr(DM1.ibdCartorio.FieldByName('CAR_ID').AsInteger);
+                      cbbTipo.ItemIndex :=  DM1.ibdCartorio.FieldByName('CAR_TIPO').AsInteger;
                    end;
         tUpdate : begin
                        HabilitaComponentes(true);
                        DM1.ibdCartorio.Locate('CAR_ID',id_CRUD,[]);
-                       edtCodigo.Text  :=  IntToStr(DM1.ibdCartorio.FieldByName('CAR_ID').AsInteger);
+                       edtCodigo.Text    :=  IntToStr(DM1.ibdCartorio.FieldByName('CAR_ID').AsInteger);
+                       cbbTipo.ItemIndex :=  DM1.ibdCartorio.FieldByName('CAR_TIPO').AsInteger;
                        DM1.ibdCartorio.Edit;
                   end;
 
@@ -119,6 +127,7 @@ begin
                       HabilitaComponentes(false);
                       DM1.ibdCartorio.Locate('CAR_ID',id_CRUD,[]);
                       edtCodigo.Text  := IntToStr(DM1.ibdCartorio.FieldByName('CAR_ID').AsInteger);
+                      cbbTipo.ItemIndex :=  DM1.ibdCartorio.FieldByName('CAR_TIPO').AsInteger;
                   end;
     end;
 end;
@@ -136,9 +145,9 @@ begin
             TDBEdit(Components[i]).Enabled := status;
         end
         else
-        if  (Self.Components[i] is TDBComboBox) then
+        if  (Self.Components[i] is TComboBox) then
         begin
-            TDBComboBox(Components[i]).Enabled := status;
+            TComboBox(Components[i]).Enabled := status;
         end;
     end;
 end;
@@ -221,3 +230,4 @@ begin
 end;
 
 end.
+

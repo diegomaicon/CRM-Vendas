@@ -25,8 +25,6 @@ object frmPrincipal: TfrmPrincipal
     Height = 714
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = -2
-    ExplicitTop = -2
     object Label1: TLabel
       Left = 512
       Top = 104
@@ -71,7 +69,7 @@ object frmPrincipal: TfrmPrincipal
         Margins.Top = 10
         Margins.Bottom = 10
         Align = alTop
-        Caption = 'Lan'#231'ar Atividade'
+        Caption = '+ Compromisso'
         TabOrder = 2
         WordWrap = True
         OnClick = btnLancAtividadeClick

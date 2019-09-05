@@ -63,15 +63,15 @@ object frmGridContato: TfrmGridContato
     end
     object btnExcluir: TBitBtn
       Left = 1
-      Top = 216
+      Top = 276
       Width = 100
       Height = 40
       Margins.Top = 10
       Margins.Bottom = 10
       Align = alTop
-      Caption = '&Excluir'
+      Caption = '&Atividade'
       TabOrder = 3
-      OnClick = btnExcluirClick
+      ExplicitTop = 216
     end
     object Panel2: TPanel
       Left = 1
@@ -174,7 +174,7 @@ object frmGridContato: TfrmGridContato
     end
     object Panel6: TPanel
       Left = 1
-      Top = 196
+      Top = 256
       Width = 100
       Height = 20
       Margins.Left = 0
@@ -204,6 +204,51 @@ object frmGridContato: TfrmGridContato
       ShowCaption = False
       ShowHint = False
       TabOrder = 7
+      ExplicitTop = 196
+    end
+    object Panel5: TPanel
+      Left = 1
+      Top = 196
+      Width = 100
+      Height = 20
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 0
+      Margins.Bottom = 0
+      ParentCustomHint = False
+      Align = alTop
+      Anchors = []
+      BevelEdges = []
+      BiDiMode = bdLeftToRight
+      Ctl3D = True
+      UseDockManager = False
+      DoubleBuffered = False
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentBiDiMode = False
+      ParentBackground = False
+      ParentCtl3D = False
+      ParentDoubleBuffered = False
+      ParentFont = False
+      ParentShowHint = False
+      ShowCaption = False
+      ShowHint = False
+      TabOrder = 8
+    end
+    object BitBtn1: TBitBtn
+      Left = 1
+      Top = 216
+      Width = 100
+      Height = 40
+      Margins.Top = 10
+      Margins.Bottom = 10
+      Align = alTop
+      Caption = '&Excluir'
+      TabOrder = 9
     end
   end
   object tabMeio: TPanel

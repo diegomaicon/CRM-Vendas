@@ -131,7 +131,12 @@ begin
         begin
             Close;
             SQL.Clear;
-            SQL.Add('Select * from TBL_CARTORIO '+#13+
+            SQL.Add(' Select CAR_ID,CAR_NOME,CAR_CEP,CAR_CIDADE,CAR_BAIRRO,CAR_UF,   '+#13+
+                    ' CAR_ENDERECO,                                                  '+#13+
+                    ' CASE WHEN CAR_TIPO = 1 THEN ''CLIENTE''                      '+#13+
+                    '      WHEN CAR_TIPO = 2 THEN ''PROSPECT''                     '+#13+
+                    ' END AS CAR_TIPO                                                '+#13+
+                    ' from TBL_CARTORIO                                              '+#13+
                     ' Where 1 = 1               ');
             if   Trim(edtBusca.Text) <> '' then
                  SQL.Add(' and car_nome LIKE '+QuotedStr('%'+edtBusca.Text+'%') );

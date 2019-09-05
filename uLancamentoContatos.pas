@@ -27,6 +27,8 @@ type
     Panel6: TPanel;
     edtBusca: TEdit;
     Button1: TButton;
+    Panel5: TPanel;
+    BitBtn1: TBitBtn;
     procedure dsConsultaDataChange(Sender: TObject; Field: TField);
     procedure Button1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -34,7 +36,6 @@ type
     procedure btnInserirClick(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);
     procedure btnConsultarClick(Sender: TObject);
-    procedure btnExcluirClick(Sender: TObject);
     procedure btnInserirKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure gridContatoDblClick(Sender: TObject);
@@ -70,11 +71,6 @@ end;
 procedure TfrmGridContato.btnConsultarClick(Sender: TObject);
 begin
     ChamaCrud(tBrowser);
-end;
-
-procedure TfrmGridContato.btnExcluirClick(Sender: TObject);
-begin
-    ChamaCrud(tDelete);
 end;
 
 procedure TfrmGridContato.btnInserirClick(Sender: TObject);

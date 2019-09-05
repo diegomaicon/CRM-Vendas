@@ -51,7 +51,7 @@ implementation
 
 
 uses
-  uDM, uLogin, uLancamentoCartorio, uLancamentoContatos,uFuncoes, uCadAtividade,
+  uDM, uLogin, uLancamentoCartorio, uLancamentoContatos,uFuncoes, uCadAgenda,
   uCadContato;
 
 
@@ -68,11 +68,11 @@ end;
 procedure TfrmPrincipal.btnLancAtividadeClick(Sender: TObject);
 begin
     try
-        frmCadAtividade := TfrmCadAtividade.Create(Self);
-        frmCadAtividade.CRUD    := tInsert;
-        frmCadAtividade.ShowModal;
+        frmCadAgenda := TfrmCadAgenda.Create(Self);
+        frmCadAgenda.CRUD    := tInsert;
+        frmCadAgenda.ShowModal;
     finally
-        frmCadAtividade.Free;
+        frmCadAgenda.Free;
         MostraAtividade();
     end;
 end;
