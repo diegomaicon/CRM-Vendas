@@ -18,7 +18,7 @@ type
     btnInserir: TBitBtn;
     btnAlterar: TBitBtn;
     btnConsultar: TBitBtn;
-    btnExcluir: TBitBtn;
+    btnTimeLine: TBitBtn;
     ibqConsulta: TFDQuery;
     dsConsulta: TDataSource;
     Panel2: TPanel;
@@ -28,7 +28,7 @@ type
     edtBusca: TEdit;
     Button1: TButton;
     Panel5: TPanel;
-    BitBtn1: TBitBtn;
+    btnExcluir: TBitBtn;
     procedure dsConsultaDataChange(Sender: TObject; Field: TField);
     procedure Button1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -39,6 +39,7 @@ type
     procedure btnInserirKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure gridContatoDblClick(Sender: TObject);
+    procedure btnTimeLineClick(Sender: TObject);
     
   private
     { Private declarations }
@@ -61,7 +62,7 @@ implementation
 {$R *.dfm}
 
 uses
-  uDM, uCadContato;
+  uDM, uCadContato, uTimeLine;
 
 procedure TfrmGridContato.btnAlterarClick(Sender: TObject);
 begin
@@ -71,6 +72,16 @@ end;
 procedure TfrmGridContato.btnConsultarClick(Sender: TObject);
 begin
     ChamaCrud(tBrowser);
+end;
+
+procedure TfrmGridContato.btnTimeLineClick(Sender: TObject);
+begin
+    try
+        frmTimeLine := TfrmTimeLine.Create(Self);
+        frmTimeLine.ShowModal;
+    finally
+        frmTimeLine.Free;
+    end;
 end;
 
 procedure TfrmGridContato.btnInserirClick(Sender: TObject);

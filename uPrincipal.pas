@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Menus, Vcl.StdCtrls,
-  Vcl.Buttons, System.ImageList, Vcl.ImgList, Vcl.Imaging.pngimage, Vcl.Grids;
+  Vcl.Buttons, System.ImageList, Vcl.ImgList, Vcl.Imaging.pngimage, Vcl.Grids,
+  Vcl.ComCtrls;
 
 type
   TfrmPrincipal = class(TForm)
@@ -13,8 +14,8 @@ type
     tabSuperior: TPanel;
     btnLancCartorio: TBitBtn;
     btnLancContato: TBitBtn;
+    btnLancCompromisso: TBitBtn;
     btnLancAtividade: TBitBtn;
-    btnExcluir: TBitBtn;
     Panel2: TPanel;
     Panel3: TPanel;
     Panel4: TPanel;
@@ -25,17 +26,21 @@ type
     Image1: TImage;
     ImageList1: TImageList;
     Label1: TLabel;
+    Panel5: TPanel;
+    Label2: TLabel;
     StringGrid1: TStringGrid;
+    StatusBar1: TStatusBar;
     procedure btnLancCartorioClick(Sender: TObject);
     procedure btnLancContatoClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure btnLancAtividadeClick(Sender: TObject);
+    procedure btnLancCompromissoClick(Sender: TObject);
     procedure StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
       Rect: TRect; State: TGridDrawState);
+    procedure btnLancAtividadeClick(Sender: TObject);
   private
     { Private declarations }
     procedure MostraAtividade;
-
+    procedure AtualizaPainelControle();
 
   public
     { Public declarations }
@@ -52,7 +57,7 @@ implementation
 
 uses
   uDM, uLogin, uLancamentoCartorio, uLancamentoContatos,uFuncoes, uCadAgenda,
-  uCadContato;
+  uCadContato, uCadAtividade;
 
 
 procedure TfrmPrincipal.btnLancContatoClick(Sender: TObject);
@@ -66,6 +71,18 @@ begin
 end;
 
 procedure TfrmPrincipal.btnLancAtividadeClick(Sender: TObject);
+begin
+    try
+        frmCadAtividade := TfrmCadAtividade.Create(Self);
+        frmCadAtividade.CRUD    := tInsert;
+        frmCadAtividade.ShowModal;
+    finally
+        frmCadAtividade.Free;
+        AtualizaPainelControle();
+    end;
+end;
+
+procedure TfrmPrincipal.btnLancCompromissoClick(Sender: TObject);
 begin
     try
         frmCadAgenda := TfrmCadAgenda.Create(Self);
@@ -91,6 +108,7 @@ procedure TfrmPrincipal.FormShow(Sender: TObject);
 begin
      lblUsuario.Caption := DM1.vgbUsuario;
      MostraAtividade();
+     AtualizaPainelControle();
 end;
 
 procedure TfrmPrincipal.MostraAtividade();
@@ -140,6 +158,36 @@ begin
     end;
   end;
    }
+end;
+
+
+procedure TfrmPrincipal.AtualizaPainelControle();
+begin
+  with DM1.ibqAuxiliar do
+  begin
+     Close;
+     SQL.Clear;
+     SQL.Add(' select ati_tipo,COUNT(*) AS quantidade from tbl_atividade  '+#13+
+             ' GROUP BY ati_tipo ');
+     Open;
+     if not IsEmpty then
+     begin
+        First;
+        while not eof do
+        begin
+           case FieldByName('ati_tipo').AsInteger of
+                1:  StatusBar1.Panels[1].Text := 'Ligações: '+inttostr(FieldByName('quantidade').AsInteger);
+                2:  StatusBar1.Panels[2].Text := 'Email: '+inttostr(FieldByName('quantidade').AsInteger);
+                3:  StatusBar1.Panels[3].Text := 'Visitas: '+inttostr(FieldByName('quantidade').AsInteger);
+                4:  StatusBar1.Panels[4].Text := 'Outros: '+inttostr(FieldByName('quantidade').AsInteger);
+           end;
+           Next;
+        end;
+
+     end;
+     Close;
+  end;
+
 end;
 
 end.

@@ -18,6 +18,7 @@ type
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
     ibdContato: TFDTable;
     ibdAgenda: TFDTable;
+    ibdAtividade: TFDTable;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
 

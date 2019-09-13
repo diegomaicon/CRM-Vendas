@@ -10,7 +10,9 @@ uses
   uLancamentoCartorio in 'uLancamentoCartorio.pas' {frmGridCartorio},
   uLancamentoContatos in 'uLancamentoContatos.pas' {frmGridContato},
   uCadContato in 'uCadContato.pas' {frmCadContato},
-  uCadAgenda in 'uCadAgenda.pas' {frmCadAgenda};
+  uCadAgenda in 'uCadAgenda.pas' {frmCadAgenda},
+  uCadAtividade in 'uCadAtividade.pas' {frmCadAtividade},
+  uTimeLine in 'uTimeLine.pas' {frmTimeLine};
 
 {$R *.res}
 

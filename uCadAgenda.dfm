@@ -100,6 +100,15 @@ object frmCadAgenda: TfrmCadAgenda
       Width = 346
       Height = 24
       Enabled = False
+      TabOrder = 3
+    end
+    object edtTarefa: TDBEdit
+      Left = 66
+      Top = 231
+      Width = 439
+      Height = 24
+      DataField = 'AGE_TAREFA'
+      DataSource = dsAgenda
       TabOrder = 2
     end
     object edtData: TCalendarPicker
@@ -118,24 +127,16 @@ object frmCadAgenda: TfrmCadAgenda
       CalendarHeaderInfo.Font.Name = 'Segoe UI'
       CalendarHeaderInfo.Font.Style = []
       Color = clWindow
+      Date = 43720.000000000000000000
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clGray
       Font.Height = -16
       Font.Name = 'Segoe UI'
       Font.Style = []
+      IsEmpty = False
       ParentFont = False
-      TabOrder = 3
-      TextHint = 'select a date'
-    end
-    object edtTarefa: TDBEdit
-      Left = 66
-      Top = 231
-      Width = 439
-      Height = 24
-      DataField = 'AGE_TAREFA'
-      DataSource = dsAgenda
-      MaxLength = 100
       TabOrder = 4
+      TextHint = 'select a date'
     end
   end
   object dsAgenda: TDataSource

@@ -61,7 +61,7 @@ object frmGridContato: TfrmGridContato
       TabOrder = 2
       OnClick = btnConsultarClick
     end
-    object btnExcluir: TBitBtn
+    object btnTimeLine: TBitBtn
       Left = 1
       Top = 276
       Width = 100
@@ -69,9 +69,9 @@ object frmGridContato: TfrmGridContato
       Margins.Top = 10
       Margins.Bottom = 10
       Align = alTop
-      Caption = '&Atividade'
+      Caption = '&Time Line'
       TabOrder = 3
-      ExplicitTop = 216
+      OnClick = btnTimeLineClick
     end
     object Panel2: TPanel
       Left = 1
@@ -204,7 +204,6 @@ object frmGridContato: TfrmGridContato
       ShowCaption = False
       ShowHint = False
       TabOrder = 7
-      ExplicitTop = 196
     end
     object Panel5: TPanel
       Left = 1
@@ -239,7 +238,7 @@ object frmGridContato: TfrmGridContato
       ShowHint = False
       TabOrder = 8
     end
-    object BitBtn1: TBitBtn
+    object btnExcluir: TBitBtn
       Left = 1
       Top = 216
       Width = 100

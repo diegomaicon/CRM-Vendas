@@ -62,7 +62,19 @@ object DM1: TDM1
     UpdateOptions.KeyFields = 'AGE_ID'
     UpdateOptions.AutoIncFields = 'AGE_ID'
     TableName = 'TBL_AGENDA'
-    Left = 192
-    Top = 168
+    Left = 176
+    Top = 160
+  end
+  object ibdAtividade: TFDTable
+    IndexFieldNames = 'ATI_ID'
+    Connection = ConexaoFB
+    UpdateOptions.AssignedValues = [uvGeneratorName]
+    UpdateOptions.GeneratorName = 'GEN_TBL_ATIVIDADE_ID'
+    UpdateOptions.UpdateTableName = 'TBL_ATIVIDADE'
+    UpdateOptions.KeyFields = 'ATI_ID'
+    UpdateOptions.AutoIncFields = 'ATI_ID'
+    TableName = 'TBL_ATIVIDADE'
+    Left = 32
+    Top = 232
   end
 end

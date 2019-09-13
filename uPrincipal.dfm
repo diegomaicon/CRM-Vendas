@@ -25,6 +25,8 @@ object frmPrincipal: TfrmPrincipal
     Height = 714
     Align = alClient
     TabOrder = 0
+    ExplicitLeft = -2
+    ExplicitTop = -2
     object Label1: TLabel
       Left = 512
       Top = 104
@@ -36,9 +38,10 @@ object frmPrincipal: TfrmPrincipal
       Left = 4
       Top = 4
       Width = 157
-      Height = 706
+      Height = 649
       Align = alLeft
       TabOrder = 0
+      ExplicitHeight = 706
       object btnLancCartorio: TBitBtn
         Left = 1
         Top = 70
@@ -46,6 +49,12 @@ object frmPrincipal: TfrmPrincipal
         Height = 40
         Align = alTop
         Caption = '&Cart'#243'rios'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
         TabOrder = 0
         OnClick = btnLancCartorioClick
       end
@@ -58,10 +67,16 @@ object frmPrincipal: TfrmPrincipal
         Margins.Bottom = 10
         Align = alTop
         Caption = 'Contatos'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
         TabOrder = 1
         OnClick = btnLancContatoClick
       end
-      object btnLancAtividade: TBitBtn
+      object btnLancCompromisso: TBitBtn
         Left = 1
         Top = 190
         Width = 155
@@ -70,11 +85,17 @@ object frmPrincipal: TfrmPrincipal
         Margins.Bottom = 10
         Align = alTop
         Caption = '+ Compromisso'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
         TabOrder = 2
         WordWrap = True
-        OnClick = btnLancAtividadeClick
+        OnClick = btnLancCompromissoClick
       end
-      object btnExcluir: TBitBtn
+      object btnLancAtividade: TBitBtn
         Left = 1
         Top = 250
         Width = 155
@@ -82,7 +103,15 @@ object frmPrincipal: TfrmPrincipal
         Margins.Top = 10
         Margins.Bottom = 10
         Align = alTop
+        Caption = '+ Atividade'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
         TabOrder = 3
+        OnClick = btnLancAtividadeClick
       end
       object Panel2: TPanel
         Left = 1
@@ -312,21 +341,82 @@ object frmPrincipal: TfrmPrincipal
         TabOrder = 7
       end
     end
-    object StringGrid1: TStringGrid
-      AlignWithMargins = True
+    object Panel5: TPanel
       Left = 764
-      Top = 4
-      Width = 250
-      Height = 706
+      Top = 1
+      Width = 253
+      Height = 655
       Align = alRight
-      ColCount = 1
-      DefaultColWidth = 250
-      DefaultRowHeight = 100
-      FixedCols = 0
-      RowCount = 1
-      FixedRows = 0
       TabOrder = 1
-      OnDrawCell = StringGrid1DrawCell
+      ExplicitLeft = 772
+      ExplicitHeight = 712
+      object Label2: TLabel
+        Left = 1
+        Top = 1
+        Width = 251
+        Height = 19
+        Align = alTop
+        Alignment = taCenter
+        Caption = 'Agenda'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ExplicitWidth = 62
+      end
+      object StringGrid1: TStringGrid
+        AlignWithMargins = True
+        Left = 4
+        Top = 23
+        Width = 245
+        Height = 706
+        Align = alTop
+        ColCount = 1
+        DefaultColWidth = 250
+        DefaultRowHeight = 100
+        FixedCols = 0
+        RowCount = 1
+        FixedRows = 0
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 0
+        OnDrawCell = StringGrid1DrawCell
+        ExplicitTop = 26
+      end
+    end
+    object StatusBar1: TStatusBar
+      Left = 1
+      Top = 656
+      Width = 1016
+      Height = 57
+      Color = clWhite
+      Panels = <
+        item
+          Text = 'N'#250'meros Gerais'
+          Width = 110
+        end
+        item
+          Text = 'Liga'#231#245'es:'
+          Width = 150
+        end
+        item
+          Text = 'Email:'
+          Width = 150
+        end
+        item
+          Text = 'Visitas:'
+          Width = 150
+        end
+        item
+          Text = 'Outros:'
+          Width = 150
+        end>
     end
   end
   object PopupMenu1: TPopupMenu
