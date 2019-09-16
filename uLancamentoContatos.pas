@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.Buttons,
-  Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls,uFuncoes;
+  Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls,uFuncoes, Vcl.Imaging.pngimage;
 type
   TfrmGridContato = class(TForm)
     tabLateral: TPanel;
@@ -29,6 +29,7 @@ type
     Button1: TButton;
     Panel5: TPanel;
     btnExcluir: TBitBtn;
+    Image1: TImage;
     procedure dsConsultaDataChange(Sender: TObject; Field: TField);
     procedure Button1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -161,9 +162,15 @@ begin
   else
   If dsConsulta.DataSet.FieldByName('CON_SCORING').AsInteger >= 50 then
   begin
+      gridContato.Canvas.Font.Color:= clRed; // coloque aqui a cor desejada
+        gridContato.DefaultDrawDataCell(Rect, gridContato.columns[datacol].field, State);
+  end
+  else
+  begin
       gridContato.Canvas.Font.Color:= clWebDarkOrange; // coloque aqui a cor desejada
         gridContato.DefaultDrawDataCell(Rect, gridContato.columns[datacol].field, State);
-  end;
+  end
+
 end;
 
 procedure TfrmGridContato.Mostra();
