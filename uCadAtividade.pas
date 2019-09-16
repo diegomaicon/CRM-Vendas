@@ -35,6 +35,7 @@ type
       Shift: TShiftState);
     procedure edtCodContatoExit(Sender: TObject);
 
+
   private
     { Private declarations }
      procedure HabilitaComponentes(status:Boolean);
@@ -43,9 +44,16 @@ type
 
   public
     { Public declarations }
+    function  CalculaScoring(contato:integer):integer;
    var
     CRUD: TEstado;
     id_CRUD:Integer;
+
+   const
+      _LIGACAO = 2;
+      _VISITA  = 4;
+      _EMAL    = 1;
+      _OUTRO   = 1;
   end;
 
 var
@@ -64,26 +72,57 @@ begin
     close;
 end;
 
-procedure TfrmCadAtividade.btnConfirmarClick(Sender: TObject);
+function TfrmCadAtividade.CalculaScoring(contato:integer):integer;
+var
+   scoring_aux,addScoring:integer;
+
 begin
+      addScoring  := 0;
+      scoring_aux := 0;
+      DM1.ibdContato.Open;
+      if DM1.ibdContato.Locate('CON_id',contato,[]) then
+      BEGIN
+          DM1.ibdContato.Edit;
+          scoring_aux := DM1.ibdContato.FieldByName('CON_SCORING').AsInteger;
 
-    
+          //
+          case rgTipo.ItemIndex of
+              0:addScoring := _LIGACAO;
+              1:addScoring := _EMAL;
+              2:addScoring := _VISITA;
+              3:addScoring := _OUTRO;
+          end;
 
+          DM1.ibdContato.FieldByName('CON_SCORING').AsInteger := scoring_aux + (addScoring * (DM1.ibdContato.FieldByName('CON_CARGO').AsInteger * 10));
+          DM1.ibdContato.Post;
+          DM1.ibdContato.close;
+      END;
+end;
+
+
+procedure TfrmCadAtividade.btnConfirmarClick(Sender: TObject);
+
+begin
      case CRUD of
         tInsert : begin
-                      DM1.ibdAtividade.FieldByName('ATI_DATA').AsDateTime  := edtData.Date;
-                      DM1.ibdAtividade.FieldByName('ATI_USU_ID').AsInteger := DM1.vgbCodUsuario;
-                      DM1.ibdAtividade.FieldByName('ATI_TIPO').AsInteger   := rgTipo.ItemIndex + 1;
-                      DM1.ibdAtividade.FieldByName('ATI_CON_ID').AsInteger := StrToInt(trim(edtCodContato.Text));
-                      DM1.ibdAtividade.Post;
+                     try
+                          DM1.ibdAtividade.FieldByName('ATI_DATA').AsDateTime  := edtData.Date;
+                          DM1.ibdAtividade.FieldByName('ATI_USU_ID').AsInteger := DM1.vgbCodUsuario;
+                          DM1.ibdAtividade.FieldByName('ATI_TIPO').AsInteger   := rgTipo.ItemIndex + 1;
+                          DM1.ibdAtividade.FieldByName('ATI_CON_ID').AsInteger := StrToInt(trim(edtCodContato.Text));
+                          DM1.ibdAtividade.Post;
+                     finally
+                         CalculaScoring( StrToInt(trim(edtCodContato.Text)));
+                     end;
                   end;
-        tUpdate : begin
+       // Implementação Futura...
+       { tUpdate : begin
                       DM1.ibdAtividade.FieldByName('ATI_DATA').AsDateTime := edtData.Date;
                       DM1.ibdAtividade.FieldByName('ATI_USU_ID').AsInteger := DM1.vgbCodUsuario;
                       DM1.ibdAtividade.FieldByName('ATI_CON_ID').AsInteger := StrToInt(trim(edtCodContato.Text));
                       DM1.ibdAtividade.Post;
                   end;
-        tDelete : DM1.ibdAtividade.Delete;
+        tDelete : DM1.ibdAtividade.Delete; }
      end;
      Close;
 end;

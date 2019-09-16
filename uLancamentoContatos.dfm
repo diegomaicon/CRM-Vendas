@@ -273,6 +273,7 @@ object frmGridContato: TfrmGridContato
       TitleFont.Height = -13
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
+      OnDrawColumnCell = gridContatoDrawColumnCell
       OnDblClick = gridContatoDblClick
       Columns = <
         item
@@ -281,6 +282,14 @@ object frmGridContato: TfrmGridContato
           FieldName = 'CON_ID'
           Title.Caption = 'ID'
           Width = 50
+          Visible = True
+        end
+        item
+          Alignment = taCenter
+          Expanded = False
+          FieldName = 'CON_SCORING'
+          Title.Caption = 'Scoring'
+          Width = 60
           Visible = True
         end
         item
@@ -294,6 +303,13 @@ object frmGridContato: TfrmGridContato
           Expanded = False
           FieldName = 'CON_NOME'
           Title.Caption = 'Nome'
+          Width = 200
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'cargo'
+          Title.Caption = 'Cargo'
           Width = 200
           Visible = True
         end
@@ -353,6 +369,7 @@ object frmGridContato: TfrmGridContato
     end
   end
   object ibqConsulta: TFDQuery
+    Active = True
     Connection = DM1.ConexaoFB
     SQL.Strings = (
       'Select * from TBL_USUARIO'

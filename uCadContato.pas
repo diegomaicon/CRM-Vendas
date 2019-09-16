@@ -30,6 +30,9 @@ type
     edtCodCartorio: TEdit;
     Label5: TLabel;
     edtNomeCatorio: TEdit;
+    Label6: TLabel;
+    cbbCargo: TComboBox;
+    lblScoring: TLabel;
     procedure btnCancelarClick(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure btnConfirmarClick(Sender: TObject);
@@ -76,11 +79,14 @@ begin
 
      case CRUD of
         tInsert : begin
-                      DM1.ibdContato.FieldByName('CON_CAR_ID').AsInteger := StrToInt(trim(edtCodCartorio.Text));
+                      DM1.ibdContato.FieldByName('CON_CAR_ID').AsInteger  := StrToInt(trim(edtCodCartorio.Text));
+                      DM1.ibdContato.FieldByName('CON_CARGO').AsInteger   := cbbCargo.ItemIndex+1;
+                      DM1.ibdContato.FieldByName('CON_SCORING').AsInteger := 0;
                       DM1.ibdContato.Post;
                   end;
         tUpdate : begin
                       DM1.ibdContato.FieldByName('CON_CAR_ID').AsInteger := StrToInt(trim(edtCodCartorio.Text));
+                      DM1.ibdContato.FieldByName('CON_CARGO').AsInteger  := cbbCargo.ItemIndex+1;
                       DM1.ibdContato.Post;
                   end;
         tDelete : DM1.ibdContato.Delete;
@@ -112,7 +118,7 @@ begin
 
         tInsert  : begin
                       HabilitaComponentes(true);
-
+                      lblScoring.Visible := False;
                       DM1.ibdContato.Insert;
                       edtCodigo.Text := IntToStr( MostraProximoID);
                    end;
@@ -123,6 +129,8 @@ begin
                       edtCodigo.Text      := IntToStr(DM1.ibdContato.FieldByName('CON_ID').AsInteger);
                       edtCodCartorio.Text := IntToStr(DM1.ibdContato.FieldByName('CON_CAR_ID').AsInteger);
                       edtNomeCatorio.Text := ValidaCartorio(DM1.ibdContato.FieldByName('CON_CAR_ID').AsInteger);
+                      cbbCargo.ItemIndex  :=  DM1.ibdContato.FieldByName('CON_CARGO').AsInteger - 1;
+                      lblScoring.Caption := 'Scoring: '+IntToStr(DM1.ibdContato.FieldByName('CON_Scoring').AsInteger);
                    end;
 
         tUpdate : begin
@@ -131,6 +139,8 @@ begin
                        edtCodigo.Text      := IntToStr(DM1.ibdContato.FieldByName('CON_ID').AsInteger);
                        edtCodCartorio.Text := IntToStr(DM1.ibdContato.FieldByName('CON_CAR_ID').AsInteger);
                        edtNomeCatorio.Text := ValidaCartorio(DM1.ibdContato.FieldByName('CON_CAR_ID').AsInteger);
+                       cbbCargo.ItemIndex  :=  DM1.ibdContato.FieldByName('CON_CARGO').AsInteger - 1;
+                        lblScoring.Caption := 'Scoring: '+IntToStr(DM1.ibdContato.FieldByName('CON_Scoring').AsInteger);
                        DM1.ibdContato.Edit;
                   end;
 
@@ -140,6 +150,8 @@ begin
                       edtCodigo.Text      := IntToStr(DM1.ibdContato.FieldByName('CON_ID').AsInteger);
                       edtCodCartorio.Text := IntToStr(DM1.ibdContato.FieldByName('CON_CAR_ID').AsInteger);
                       edtNomeCatorio.Text := ValidaCartorio(DM1.ibdContato.FieldByName('CON_CAR_ID').AsInteger);
+                      cbbCargo.ItemIndex  :=  DM1.ibdContato.FieldByName('CON_CARGO').AsInteger - 1;
+                      lblScoring.Caption := 'Scoring: '+IntToStr(DM1.ibdContato.FieldByName('CON_Scoring').AsInteger);
                   end;
     end;
 end;
@@ -165,9 +177,9 @@ begin
             TDBEdit(Components[i]).Enabled := status;
         end
         else
-        if  (Self.Components[i] is TDBComboBox) then
+        if  (Self.Components[i] is TComboBox) then
         begin
-            TDBComboBox(Components[i]).Enabled := status;
+            TComboBox(Components[i]).Enabled := status;
         end;
 
     end;

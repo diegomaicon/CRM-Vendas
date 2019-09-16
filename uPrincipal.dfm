@@ -25,8 +25,6 @@ object frmPrincipal: TfrmPrincipal
     Height = 714
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = -2
-    ExplicitTop = -2
     object Label1: TLabel
       Left = 512
       Top = 104
@@ -41,7 +39,6 @@ object frmPrincipal: TfrmPrincipal
       Height = 649
       Align = alLeft
       TabOrder = 0
-      ExplicitHeight = 706
       object btnLancCartorio: TBitBtn
         Left = 1
         Top = 70
@@ -348,8 +345,6 @@ object frmPrincipal: TfrmPrincipal
       Height = 655
       Align = alRight
       TabOrder = 1
-      ExplicitLeft = 772
-      ExplicitHeight = 712
       object Label2: TLabel
         Left = 1
         Top = 1
@@ -387,7 +382,6 @@ object frmPrincipal: TfrmPrincipal
         ParentFont = False
         TabOrder = 0
         OnDrawCell = StringGrid1DrawCell
-        ExplicitTop = 26
       end
     end
     object StatusBar1: TStatusBar

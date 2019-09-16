@@ -40,6 +40,8 @@ type
       Shift: TShiftState);
     procedure gridContatoDblClick(Sender: TObject);
     procedure btnTimeLineClick(Sender: TObject);
+    procedure gridContatoDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
     
   private
     { Private declarations }
@@ -141,13 +143,41 @@ begin
 
 end;
 
+procedure TfrmGridContato.gridContatoDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  //Alterando cor do Grid, de acordo com scoring...
+  If dsConsulta.DataSet.FieldByName('CON_SCORING').AsInteger >= 150 then
+  begin
+        gridContato.Canvas.Font.Color:= clWebRoyalBlue;
+        gridContato.DefaultDrawDataCell(Rect, gridContato.columns[datacol].field, State);
+  end
+  else
+  If (dsConsulta.DataSet.FieldByName('CON_SCORING').AsInteger >= 100)  and (dsConsulta.DataSet.FieldByName('CON_SCORING').AsInteger < 150) then
+  begin
+       gridContato.Canvas.Font.Color:= clWebForestGreen;
+        gridContato.DefaultDrawDataCell(Rect, gridContato.columns[datacol].field, State);
+  end
+  else
+  If dsConsulta.DataSet.FieldByName('CON_SCORING').AsInteger >= 50 then
+  begin
+      gridContato.Canvas.Font.Color:= clWebDarkOrange; // coloque aqui a cor desejada
+        gridContato.DefaultDrawDataCell(Rect, gridContato.columns[datacol].field, State);
+  end;
+end;
+
 procedure TfrmGridContato.Mostra();
 begin
     with ibqConsulta do
     begin
         Close;
         SQL.Clear;
-        SQL.Add(' Select (CAST(CAR_ID AS VARCHAR(10)) || '+QuotedStr(' - ')+' ||CAR_NOME) AS CARTORIO, CT.*   '+#13+
+        SQL.Add(' Select (CAST(CAR_ID AS VARCHAR(10)) || '+QuotedStr(' - ')+' ||CAR_NOME) AS CARTORIO, CT.*,  '+#13+
+                ' CASE con_cargo                                                                              '+#13+
+                '     WHEN 3 THEN ''Proprietário/Sócio''                                                      '+#13+
+                '     WHEN 2 THEN ''Gerente de Compra''                                                       '+#13+
+                '     WHEN 1 THEN ''Secretário/Funcionário''                                                  '+#13+
+                '    END cargo                                                                                '+#13+
                 ' from TBL_CONTATOS  CT                                                                       '+#13+
                 ' inner join TBL_CARTORIO ON CON_CAR_ID = CAR_ID                                              '+#13+
                 ' Where 1 = 1               ');

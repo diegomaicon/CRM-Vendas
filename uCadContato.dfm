@@ -55,7 +55,7 @@ object frmCadContato: TfrmCadContato
     Height = 318
     Align = alClient
     TabOrder = 1
-    ExplicitLeft = 8
+    ExplicitLeft = -2
     object Label1: TLabel
       Left = 65
       Top = 35
@@ -99,11 +99,31 @@ object frmCadContato: TfrmCadContato
       Caption = 'Celular 1:'
     end
     object Label5: TLabel
-      Left = 208
+      Left = 152
       Top = 35
       Width = 109
       Height = 16
       Caption = 'Cod. Cart'#243'rio (F8):'
+    end
+    object Label6: TLabel
+      Left = 281
+      Top = 185
+      Width = 39
+      Height = 16
+      Caption = 'Cargo:'
+    end
+    object lblScoring: TLabel
+      Left = 415
+      Top = 52
+      Width = 66
+      Height = 19
+      Caption = 'Scoring:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object edtNome: TDBEdit
       Left = 65
@@ -131,14 +151,13 @@ object frmCadContato: TfrmCadContato
       Height = 24
       DataField = 'CON_PHONE_2'
       DataSource = dscontato
-      MaxLength = 14
       TabOrder = 6
       OnKeyPress = edtTelefone_principalKeyPress
     end
     object edtCodigo: TEdit
       Left = 65
       Top = 52
-      Width = 121
+      Width = 72
       Height = 24
       Enabled = False
       TabOrder = 0
@@ -151,7 +170,6 @@ object frmCadContato: TfrmCadContato
       Height = 24
       DataField = 'CON_PHONE_PRINCIPAL'
       DataSource = dscontato
-      MaxLength = 14
       TabOrder = 4
       OnKeyPress = edtTelefone_principalKeyPress
     end
@@ -162,13 +180,12 @@ object frmCadContato: TfrmCadContato
       Height = 24
       DataField = 'CON_PHONE_1'
       DataSource = dscontato
-      MaxLength = 14
       TabOrder = 5
     end
     object edtCodCartorio: TEdit
-      Left = 208
+      Left = 152
       Top = 52
-      Width = 81
+      Width = 65
       Height = 24
       TabOrder = 1
       OnExit = edtCodCartorioExit
@@ -176,19 +193,31 @@ object frmCadContato: TfrmCadContato
       OnKeyPress = edtCodCartorioKeyPress
     end
     object edtNomeCatorio: TEdit
-      Left = 295
+      Left = 223
       Top = 52
-      Width = 226
+      Width = 186
       Height = 24
       Enabled = False
       TabOrder = 7
       OnKeyPress = edtCodCartorioKeyPress
     end
+    object cbbCargo: TComboBox
+      Left = 280
+      Top = 201
+      Width = 241
+      Height = 24
+      TabOrder = 8
+      Text = 'Secret'#225'rio/Funcion'#225'rio(a)'
+      Items.Strings = (
+        'Secret'#225'rio/Funcion'#225'rio (a)'
+        'Gerente de Compras'
+        'Propriet'#225'rio/S'#243'cio (a)')
+    end
   end
   object dscontato: TDataSource
     AutoEdit = False
     DataSet = DM1.ibdContato
-    Left = 467
-    Top = 259
+    Left = 43
+    Top = 347
   end
 end

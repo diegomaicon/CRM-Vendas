@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.DBCGrids, Vcl.StdCtrls,
-  Vcl.ExtCtrls, System.ImageList, Vcl.ImgList;
+  Vcl.ExtCtrls, System.ImageList, Vcl.ImgList, Vcl.DBCtrls,DateUtils;
 
 type
   TfrmTimeLine = class(TForm)
@@ -20,8 +20,13 @@ type
     dsTimeline: TDataSource;
     ibqTimeLine: TFDQuery;
     ImageList1: TImageList;
-    Image1: TImage;
     Button1: TButton;
+    DBText1: TDBText;
+    Image1: TImage;
+    Label2: TLabel;
+    DBText2: TDBText;
+    Label3: TLabel;
+    lblNenhum: TLabel;
     procedure DBCtrlGrdTimeLinePaintPanel(DBCtrlGrid: TDBCtrlGrid; Index: Integer);
     procedure Button1Click(Sender: TObject);
   private
@@ -45,8 +50,37 @@ begin
     begin
         Close;
         SQL.Clear;
-        SQL.Add('Select * from tbl_Atividade');
+        SQL.Add('Select * from tbl_Atividade where 1=1 ');
+
+        //Seleciona por período...
+        case RadioGroup1.ItemIndex  of
+            1:begin
+                 SQL.Add(' and ATI_DATA BETWEEN CURRENT_DATE -90 AND CURRENT_DATE ');
+              end;
+            2:begin
+                 SQL.Add(' and ATI_DATA BETWEEN CURRENT_DATE -30 AND CURRENT_DATE ');
+              end;
+            3:begin
+                 SQL.Add(' and ATI_DATA = '+QuotedStr(FormatDateTime('dd.mm.yyyy',now)));
+              end;
+        end;
+
         Open;
+
+        if not IsEmpty then
+        begin
+
+           DBCtrlGrdTimeLine.Visible:= True;
+           DBCtrlGrdTimeLine.RowCount :=  ibqTimeLine.RecordCount;
+           DBCtrlGrdTimeLine.PanelHeight := 140;
+           lblNenhum.Visible  := not DBCtrlGrdTimeLine.Visible;
+        end
+        else
+        begin
+           DBCtrlGrdTimeLine.Visible:= False;
+           DBCtrlGrdTimeLine.PanelHeight := 140;
+           lblNenhum.Visible  := not DBCtrlGrdTimeLine.Visible;
+        end;
     end;
 end;
 
@@ -56,6 +90,7 @@ begin
 
      if not dsTimeline.DataSet.IsEmpty then
      begin
+         //Altera imagem de acordo com tipo de atividade...
          case dsTimeline.DataSet.FieldByName('ATI_TIPO').AsInteger of
             1: begin
                   ImageList1.GetIcon(0,Image1.Picture.Icon);

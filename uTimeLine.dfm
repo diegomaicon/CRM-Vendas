@@ -71,28 +71,83 @@ object frmTimeLine: TfrmTimeLine
     Height = 720
     Align = alClient
     TabOrder = 1
-    ExplicitLeft = 161
-    object Image1: TImage
-      Left = 24
-      Top = 32
-      Width = 57
-      Height = 41
-      Transparent = True
+    object lblNenhum: TLabel
+      Left = 366
+      Top = 350
+      Width = 123
+      Height = 19
+      Caption = 'Nenhum Registro'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
     end
     object DBCtrlGrdTimeLine: TDBCtrlGrid
       Left = 1
       Top = 1
       Width = 853
-      Height = 718
-      Align = alClient
+      Height = 140
+      Align = alTop
+      AllowDelete = False
+      AllowInsert = False
       DataSource = dsTimeline
-      PanelHeight = 119
+      PanelHeight = 140
       PanelWidth = 836
       TabOrder = 0
-      RowCount = 6
+      RowCount = 1
+      Visible = False
       OnPaintPanel = DBCtrlGrdTimeLinePaintPanel
-      ExplicitLeft = -23
-      ExplicitTop = 2
+      object DBText1: TDBText
+        Left = 112
+        Top = 32
+        Width = 177
+        Height = 17
+        DataField = 'ATI_DATA'
+        DataSource = dsTimeline
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Image1: TImage
+        Left = 24
+        Top = 32
+        Width = 49
+        Height = 34
+        Transparent = True
+      end
+      object Label2: TLabel
+        Left = 112
+        Top = 15
+        Width = 31
+        Height = 16
+        Caption = 'Data:'
+      end
+      object DBText2: TDBText
+        Left = 112
+        Top = 72
+        Width = 697
+        Height = 33
+        DataField = 'ATI_DESCRICAO'
+        DataSource = dsTimeline
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label3: TLabel
+        Left = 112
+        Top = 55
+        Width = 60
+        Height = 16
+        Caption = 'Descri'#231#227'o:'
+      end
     end
   end
   object dsTimeline: TDataSource
@@ -111,7 +166,7 @@ object frmTimeLine: TfrmTimeLine
     Left = 120
     Top = 184
     Bitmap = {
-      494C010104001400040020002000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
+      494C010104001400040020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000004000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1171,6 +1226,7 @@ object frmTimeLine: TfrmTimeLine
       0000000000000000FFE07FFF000000E00000000000000000FFFC9FFF000000FF
       8000000180000001FFFF07FF000000FFFFFFFFFFFFFFFFFFFFFE07FF000000FF
       FFFFFFFFFFFFFFFFFFFE07FF000000FFFFFFFFFFFFFFFFFFFFFE07FF000000FF
-      FFFFFFFFFFFFFFFFFFFF0FFF000000FF}
+      FFFFFFFFFFFFFFFFFFFF0FFF000000FF00000000000000000000000000000000
+      000000000000}
   end
 end
